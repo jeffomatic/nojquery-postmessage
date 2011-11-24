@@ -1,6 +1,6 @@
 ### non-jQuery fork by Jeff Lee
 
-I'm a fan of the minimal interface of this plugin, but for various reasons I didn't want to be forced to include the overhead of including jQuery. Luckily, the dependencies on jQuery were minimal.
+I'm a fan of the minimal interface of this plugin, but for various reasons I didn't want to be forced to include jQuery. Luckily, the dependencies on jQuery were minimal.
 
 This fork consists of the following changes:
 
