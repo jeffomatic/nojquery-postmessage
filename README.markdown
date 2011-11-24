@@ -5,7 +5,7 @@ I'm a fan of the minimal interface of this plugin, but for various reasons I did
 This fork consists of the following changes:
 
 1. The `postMessage` and `receiveMessage` functions can now be attached to an arbitrary namespace, rather than just jQuery. This defaults to the global (`window`) namespace. You can change this by modifying the argument passed into the outer namespacing function.
-2. I've removed the check for Opera 9.64, which used `$.browser`. Since there were at least three different GitHub users requesting the removal
+2. I've removed the check for Opera 9.64, which used `$.browser`. There were at least three different GitHub users requesting the removal of this "Opera sniff" on the original project's Issues page, so I figured this would be a relatively safe change.
 3. `postMessage` no longer uses `$.param` to serialize messages that are not strings. I actually prefer this structure anyway. `receiveMessage` does not implement a corresponding deserialization step, and as such it seems cleaner and more symmetric to leave both data serialization and deserialization to the client.
 4. The use of `$.isFunction` is replaced by a functionally-identical check.
 5. The `$:nomunge` YUI option is no longer necessary.
