@@ -48,12 +48,12 @@ function NoJQueryPostMessageMixin(postBinding, receiveBinding) {
     }
 
     function setMessageCallback(callback) {
-      window[eventFunctions.add](eventMessage, callback);
+      window[eventFunctions.add](eventMessage, callback, false);
       return callback;
     }
 
     function unsetMessageCallback(callback) {
-      window[eventFunctions.remove](eventMessage, callback);
+      window[eventFunctions.remove](eventMessage, callback, false);
     }
 
     this[postBinding] = function(message, targetUrl, target) {
