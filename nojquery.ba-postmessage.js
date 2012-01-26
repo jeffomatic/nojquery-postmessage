@@ -28,32 +28,27 @@
 
 function NoJQueryPostMessageMixin(postBinding, receiveBinding) {
 
-    var eventFunctions, eventMessage, currentMsgCallback,
+    var setMessageCallback, unsetMessageCallback, currentMsgCallback,
         intervalId, lastHash, cacheBust = 1;
 
   if (window.postMessage) {
 
     if (window.addEventListener) {
-      eventFunctions = {
-        add: 'addEventListener',
-        remove: 'removeEventListener'
+      setMessageCallback = function(callback) {
+        window.addEventListener('message', callback, false);
       }
-      eventMessage = 'message';
+
+      unsetMessageCallback = function(callback) {
+        window.removeEventListener('message', callback, false);
+      }
     } else {
-      eventFunctions = {
-        add: 'attachEvent',
-        remove: 'detachEvent'
+      setMessageCallback = function(callback) {
+        window.attachEvent('onmessage', callback);
       }
-      eventMessage = 'onmessage';
-    }
 
-    function setMessageCallback(callback) {
-      window[eventFunctions.add](eventMessage, callback);
-      return callback;
-    }
-
-    function unsetMessageCallback(callback) {
-      window[eventFunctions.remove](eventMessage, callback);
+      unsetMessageCallback = function(callback) {
+        window.detachEvent('onmessage', callback);
+      }
     }
 
     this[postBinding] = function(message, targetUrl, target) {
